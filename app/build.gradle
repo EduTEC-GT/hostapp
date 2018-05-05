@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'io.fabric'
 android {
     compileSdkVersion rootProject.ext.compiledSdkVersion
@@ -36,7 +35,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    implementation 'com.google.firebase:firebase-core:15.0.2'
     //Material Design
     implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
@@ -45,19 +43,13 @@ dependencies {
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     //FIREBASE
-    implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-auth:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-database:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-messaging:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-storage:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-appindexing:$rootProject.ext.firebaseVersion"
-    //Crashlytics
-    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') { transitive = true }
-    implementation "com.google.firebase:firebase-config:$rootProject.ext.firebaseVersion"
-    implementation "com.google.firebase:firebase-perf:$rootProject.ext.firebaseVersion"
+    implementation "com.google.firebase:firebase-core:15.0.2"
+    implementation "com.google.firebase:firebase-auth:15.1.0"
+    implementation "com.google.firebase:firebase-database:15.0.0"
+    implementation "com.google.firebase:firebase-messaging:15.0.2"
     //FIREBASE UI AUTH
     implementation "com.firebaseui:firebase-ui-auth:$rootProject.ext.firebaseUiVersion"
-    implementation "com.google.android.gms:play-services-auth:$rootProject.ext.firebaseVersion"
+    implementation "com.google.android.gms:play-services-auth:15.0.0"
     //Facebook
     implementation "com.facebook.android:facebook-login:$rootProject.ext.facebookVersion"
     //Twitter
@@ -70,6 +62,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     //Hacer circular la imagen
     implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleImageViewVersion"
+    //Crashlytics
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') { transitive = true }
     //Facilitador de vista
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"

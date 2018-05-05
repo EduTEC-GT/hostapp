@@ -1,9 +1,8 @@
 package gt.edu.edutec.hostapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
@@ -11,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import gt.edu.edutec.hostapp.home.ui.Home;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
@@ -49,8 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Log.e("SIGN_IN_OK", String.valueOf(auth.getCurrentUser().getUid()));
-                Log.e("SIGN_OUT", auth.getCurrentUser().getUid());
-                auth.signOut();
+                startActivity(new Intent(this, Home.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                        Intent.FLAG_ACTIVITY_NEW_TASK));
             }else{
                 Log.e("SIGN_IN_FAIL", String.valueOf(data.getDataString()));
             }
