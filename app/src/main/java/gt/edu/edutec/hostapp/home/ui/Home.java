@@ -46,16 +46,6 @@ public class Home extends DrawableActivity implements HomeView{
         ButterKnife.bind(this);
         injection();
         presenter.onCreate();
-        ArrayList<Inmueble> list = new ArrayList<>();
-        try {
-            new Intent().putExtra("lista", ObjectSerializer.serialize(list));
-            ArrayList<Inmueble> lista2 = (ArrayList<Inmueble>) ObjectSerializer.deserialize(getIntent()
-            .getStringExtra("lista"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         setMenu(imageLoader, presenter);
     }
 
