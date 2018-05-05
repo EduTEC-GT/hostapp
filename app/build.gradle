@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    implementation 'com.google.firebase:firebase-core:15.0.0'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
     //Material Design
     implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
@@ -61,7 +61,9 @@ dependencies {
     //Facebook
     implementation "com.facebook.android:facebook-login:$rootProject.ext.facebookVersion"
     //Twitter
-    implementation("com.twitter.sdk.android:twitter:$rootProject.ext.twitterVersion") { transitive = true }
+    implementation("com.twitter.sdk.android:twitter:$rootProject.ext.twitterVersion") {
+        transitive = true
+    }
     //Inyeccion de dependencias
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     implementation "javax.annotation:jsr250-api:$rootProject.ext.jsr250Version"
