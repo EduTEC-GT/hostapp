@@ -2,10 +2,10 @@ package gt.edu.edutec.hostapp.home.DI;
 
 import android.content.Context;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 import gt.edu.edutec.hostapp.firebase.FirebaseHelper;
 import gt.edu.edutec.hostapp.home.HomeInteractor;
 import gt.edu.edutec.hostapp.home.HomeInteractorImpl;
@@ -26,25 +26,25 @@ public class HomeModule {
     }
 
     @Singleton
-    @Inject
+    @Provides
     HomeView providesHomeView(){
         return this.view;
     }
 
     @Singleton
-    @Inject
+    @Provides
     HomePresenter providesHomePresenter(EventBus bus, Context context, HomeView view, HomeInteractor interactor){
         return new HomePresenterImpl(bus, context, view, interactor);
     }
 
     @Singleton
-    @Inject
+    @Provides
     HomeInteractor providesHomeInteractor(EventBus bus, Context context, HomeRepo repo){
         return new HomeInteractorImpl(bus, context, repo);
     }
 
     @Singleton
-    @Inject
+    @Provides
     HomeRepo providesHomeRepo(EventBus bus, Context context, FirebaseHelper helper){
         return new HomeRepoImpl(bus, context, helper);
     }
