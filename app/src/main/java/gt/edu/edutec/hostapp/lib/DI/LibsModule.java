@@ -13,6 +13,7 @@ import gt.edu.edutec.hostapp.lib.GlideImageLoader;
 import gt.edu.edutec.hostapp.lib.GreenRobotEventBus;
 import gt.edu.edutec.hostapp.lib.base.EventBus;
 import gt.edu.edutec.hostapp.lib.base.ImageLoader;
+import gt.edu.edutec.hostapp.util.ObjectSerializer;
 
 /**
  * Created by javie on 11/12/2017.
@@ -44,5 +45,11 @@ public class LibsModule {
     @Provides
     RequestManager providesRequestManager(Context context){
         return Glide.with(context);
+    }
+
+    @Singleton
+    @Provides
+    ObjectSerializer providesObjectSerializer(){
+        return new ObjectSerializer();
     }
 }
