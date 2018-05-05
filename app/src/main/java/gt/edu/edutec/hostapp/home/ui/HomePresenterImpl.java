@@ -30,6 +30,9 @@ public class HomePresenterImpl extends PresenterImpl implements HomePresenter {
 
     @Override
     public void moreOnEvent(Event event) {
-        super.moreOnEvent(event);
+        switch (event.getTipo()){
+            case Event.listadoInmueble:
+                break;
+        }
     }
 }

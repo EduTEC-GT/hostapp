@@ -25,6 +25,7 @@ public class FirebaseHelper {
         this.context = context;
         this.mAuth = FirebaseAuth.getInstance();
         this.reference = FirebaseDatabase.getInstance().getReference();
+        this.bus = bus;
     }
 
     public void getUsuario(final FirebaseResut result){
