@@ -33,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
                     .setIsSmartLockEnabled(false);
             Intent intent = intentBuilder.build();
             startActivityForResult(intent, RC_SIGN_IN);
+        }else{
+            startActivity(new Intent(this, Home.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                            Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 

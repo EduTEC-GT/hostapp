@@ -14,4 +14,9 @@ public class HomeInteractorImpl extends InteractorImpl implements HomeInteractor
         super(bus, context, repo);
         this.homeRepo = repo;
     }
+
+    @Override
+    public void getVenues() {
+        this.homeRepo.getVenues();
+    }
 }

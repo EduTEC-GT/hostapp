@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import gt.edu.edutec.hostapp.entities.Inmueble;
 import gt.edu.edutec.hostapp.lib.base.EventBus;
 
 public class FirebaseHelper {
@@ -34,5 +35,41 @@ public class FirebaseHelper {
         }else{
             result.error("");
         }
+    }
+
+    public void getVenues(final FirebaseResut resut){
+        reference.child("venues").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Inmueble inmueble = snapshot.getValue(Inmueble.class);
+                    inmueble.setKey(snapshot.getKey());
+                    inmuebles.add(inmueble);
+                }
+                resut.found(inmuebles);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                resut.error(databaseError.toException().getLocalizedMessage());
+            }
+        });
+    }
+
+    public void getVenue(String key, final FirebaseResut resut){
+        reference.child("venues").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Inmueble inmueble = dataSnapshot.getValue(Inmueble.class);
+                inmueble.setKey(dataSnapshot.getKey());
+                resut.found(inmueble);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                resut.error(databaseError.toException().getLocalizedMessage());
+            }
+        });
     }
 }

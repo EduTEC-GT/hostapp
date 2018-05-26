@@ -15,11 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import gt.edu.edutec.hostapp.LoginActivity;
 import gt.edu.edutec.hostapp.R;
+import gt.edu.edutec.hostapp.home.ui.Home;
 import gt.edu.edutec.hostapp.lib.base.ImageLoader;
 
 public class DrawableActivity extends AppCompatActivity
@@ -64,19 +67,18 @@ public class DrawableActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id){
+            case R.id.nav_inicio:
+                startActivity(new Intent(this, Home.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        |Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                |Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
