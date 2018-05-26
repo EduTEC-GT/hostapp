@@ -7,7 +7,12 @@ import gt.edu.edutec.hostapp.home.DI.DaggerHomeComponent;
 import gt.edu.edutec.hostapp.home.DI.HomeComponent;
 import gt.edu.edutec.hostapp.home.DI.HomeModule;
 import gt.edu.edutec.hostapp.home.ui.HomeView;
+import gt.edu.edutec.hostapp.home.ui.VenueClickListener;
 import gt.edu.edutec.hostapp.lib.DI.LibsModule;
+import gt.edu.edutec.hostapp.venue.DI.DaggerVenueComponent;
+import gt.edu.edutec.hostapp.venue.DI.VenueComponent;
+import gt.edu.edutec.hostapp.venue.DI.VenueModule;
+import gt.edu.edutec.hostapp.venue.ui.VenueView;
 /*
  * Created by javie on 11/28/2017.
  */
@@ -40,12 +45,21 @@ public class App extends Application {
     }
 
     //Inyeccion - INICIO
-    public HomeComponent home(HomeView view){
+    public HomeComponent home(HomeView view, VenueClickListener listener){
         return DaggerHomeComponent.builder()
                 .appModule(appModule)
                 .libsModule(libsModule)
                 .firebaseModule(firebaseModule)
-                .homeModule(new HomeModule(view))
+                .homeModule(new HomeModule(view, listener))
+                .build();
+    }
+
+    public VenueComponent venue(VenueView view){
+        return DaggerVenueComponent.builder()
+                .appModule(appModule)
+                .libsModule(libsModule)
+                .firebaseModule(firebaseModule)
+                .venueModule(new VenueModule(view))
                 .build();
     }
     //Inyection - FIN
